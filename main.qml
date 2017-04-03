@@ -2,15 +2,16 @@ import QtQuick 2.4
 import QtQuick.Controls 1.3
 import QtQuick.Window 2.2
 import QtQuick.Dialogs 1.2
-import org.rtiDDS 1.0
+import org.QrtiDDS 1.0
 
 ApplicationWindow {
     id: root
-    title: qsTr("My DDS Chat")
-    minimumWidth: 300
-    minimumHeight: 530
-    maximumWidth: 300
-    maximumHeight: 530
+    title: qsTr("Qt rti DDS Messager")
+    minimumHeight: 600
+    minimumWidth: 900
+
+    maximumWidth: Screen.width
+    maximumHeight: Screen.height
     visible: true
 
     property string myName : "thurberdog"
@@ -33,7 +34,7 @@ ApplicationWindow {
         id: myTabs
         anchors.fill: parent
         Tab{
-            title: "Chat"
+            title: "Message"
             Column {
                 anchors.fill: parent
                 anchors.margins: 3
@@ -50,31 +51,31 @@ ApplicationWindow {
 
 
                 TextField {
-                    id: sendMsg
+                    id: publish_message
                     text: ""
                     width: parent.width
                     onAccepted: {
                         if (text){
                             msgHandler.writeData(root.myName + ": " + text);
-                            sendMsg.text = "";
+                            publish_message.text = "";
                         }
                     }
                 }
 
                 Button{
-                    id: sendMsgBtn
-                    text: "Send"
+                    id: publish_messageBtn
+                    text: "Publish Message to DDS"
                     width: parent.width
                     onClicked: {
-                        if (sendMsg.text){
-                            msgHandler.writeData(root.myName + ": " + sendMsg.text);
-                            sendMsg.text = "";
+                        if (publish_message.text){
+                            msgHandler.writeData(root.myName + ": " + publish_message.text);
+                            publish_message.text = "";
                         }
                     }
                 }
 
                 //handle Messages comming via C++
-                CommsHandler{
+                QrtiDDShandler{
                     id: msgHandler
                     onNewRcvdDataAvailable: rcvMsgs.append(data);
                 }

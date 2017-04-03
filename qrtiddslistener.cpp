@@ -1,12 +1,26 @@
+//
+// qrtilistener.cpp
+// Author: Louis Meadows <lou@positivelyfrontstreet.com>
+//         Qt/QML Consultant
+//         Positively Front Street, Inc
+//
 #include "qrtiddslistener.h"
 
 DDS_Boolean shutdown_flag = DDS_BOOLEAN_FALSE;
 
+/**
+ * @brief QrtiDDSlistener::QrtiDDSlistener
+ * @param parent
+ */
 QrtiDDSlistener::QrtiDDSlistener(QObject *parent) : QObject(parent)
 {
 
 }
 
+/**
+ * @brief QrtiDDSlistener::on_data_available
+ * @param reader
+ */
 void QrtiDDSlistener::on_data_available(DDSDataReader *reader) {
     DDSStringDataReader * string_reader = NULL;
     char                  sample[MAX_STRING_SIZE];

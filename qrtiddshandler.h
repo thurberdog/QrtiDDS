@@ -12,10 +12,12 @@
 class QrtiDDShandler : public QObject
 {
     Q_OBJECT
+    Q_PROPERTY(QString dataAccess WRITE writeData READ readData NOTIFY newRcvdDataAvailable)
+
     void setUp_rtiDDS_handler();
 public:
     explicit QrtiDDShandler(QObject *parent = 0);
-
+   ~QrtiDDShandler();
     QString readData();
 
 signals:

@@ -8,11 +8,11 @@
 #include <QTimer>
 #include "ndds/ndds_cpp.h"
 
-class QrtiDDSlistener : public QObject
+class QrtiDDSlistener : public QObject, public DDSDataReaderListener
 {
     Q_OBJECT
 public:
-    explicit QrtiDDSlistener(QObject *parent = 0);
+    QrtiDDSlistener(QObject *parent);
 
 signals:
     void newData(QString data);

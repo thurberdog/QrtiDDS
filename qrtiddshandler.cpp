@@ -6,6 +6,11 @@ QrtiDDShandler::QrtiDDShandler(QObject *parent) : QObject(parent)
    setUp_rtiDDS_handler();
 }
 
+QrtiDDShandler::~QrtiDDShandler()
+{
+
+}
+
 /**
  * @brief QrtiDDShandler::setupCommsHandler
  */
@@ -40,6 +45,6 @@ void QrtiDDShandler::writeData(QString data){
  */
 void QrtiDDShandler::readListenerData(QString data){
     qDebug()<<__FUNCTION__<<__LINE__  << this << "recieved: " << data;
-    rcvBuffer = data;
+    rtiDDSrcvBuffer = data;
     emit newRcvdDataAvailable(data);
 }

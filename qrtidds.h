@@ -27,7 +27,7 @@ public:
     int                     main_result;
 
 public slots:
-    void sendData(QString data);
+    void publishDDS(QString data);
 
 private:
     int setupQrtiDDS();
